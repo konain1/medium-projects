@@ -13,6 +13,10 @@ let AllpriorityColors = document.querySelectorAll('.priority-color');
 
 let priorityColor = ['lightpink','lightgreen','lightblue','black'];
 
+let removeBtn = document.querySelector('.remove-btn');
+
+let removeFlag = false
+
 
 
 
@@ -57,6 +61,39 @@ function ticketCreated(priorityColor,task){
 
     main_cont.appendChild(ticket_cont);
 
+
+    ticketRemover(ticket_cont);
+  
+
+   
+}
+
+// remove modal with remove btn
+
+removeBtn.addEventListener('click',()=>{
+    removeFlag = !removeFlag
+    console.log(removeFlag)
+
+    if(removeFlag == true){
+        removeBtn.style.tramsform = "rotate(7deg)";
+        removeBtn.style.color = 'red';
+    }else {
+        removeBtn.style.color = 'black';
+    }
+
+})
+
+function ticketRemover(ticket){
+    
+        ticket.addEventListener('click',function(){
+
+            if(removeFlag == true){
+                ticket.remove();
+                console.log("clicked")
+            }
+           
+        })
+    
 }
 
 // priority colors function color list
@@ -72,3 +109,4 @@ AllpriorityColors.forEach(function(ele){
          console.log(priorityColor)
     })
 })
+
