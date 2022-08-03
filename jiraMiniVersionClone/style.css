@@ -39,22 +39,112 @@ body{
     /* background-color: blue; */
 }
 
+.lightpink {
+    background-color: lightpink;
+}
+.lightblue {
+    background-color: lightblue;
+}
 
-
+.lightgreen{
+    background-color: lightgreen;
+}
+.black {
+    background-color: black;
+}
 .toolbox-action-btn-cont{
  display: flex;
  
  gap: 12px;
-font-size: 2rem;
+ font-size: 2rem;
  height: 3.5rem;
  width: 8rem;
  justify-content: space-evenly;
  align-items: center;
  background-color:#718093;
-border: 1px solid rgb(230, 209, 209);
+ border: 1px solid rgb(230, 209, 209);
+ align-items: center;
+ justify-content: center;
+
+}
+.toolbox-action-btn-cont >* {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+
+.toolbox-action-btn-cont>*:hover {
+    background-color: aqua;
+    transform: scale(1.08,1.08);   
 
 }
 
-.toolbox-action-btn-cont>*{
+.modal-cont {
+    height: 50vh;
+    width: 45vw;
+    background-color: lightslategray;
+    position: absolute;
+    top:calc((100vh - 50vh)/ 2);
+    left:calc((100vw - 45vw ) / 2);
+    display: none;
 
+}
+.textarea-cont {
+    outline: none;
+    height: 100%;
+    width: 75%;
+    border: none;
+    background-color: cadetblue;
+    resize: none;
+    font-size: 1rem;
+    padding: 2rem;
+}
+
+.priority-colors-cont{
+    height: 100%;
+    width: 25%;
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.priority-color{
+    height: 4rem;
+    width: 6rem;
+    box-shadow: #353b48;
+}
+.active {
+    border: 2px solid white;
+}
+
+.main-cont {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+.ticket-cont {
+    height: 15rem;
+    width: 18rem;
+    background-color:chartreuse;
+}
+.ticket-color {
+    height: 1rem;
+    /* background-color:lightblue; */
+}
+.ticket-id {
+    height: 2rem;
+    background-color: #353b48;
+}
+.ticket-taskarea {
+    height: calc(100% - 2rem - 1rem);
+    font-size: 2rem;
+    background-color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
