@@ -10,7 +10,7 @@ let main_cont = document.querySelector('.main-cont');
 
 let AllpriorityColors = document.querySelectorAll('.priority-color');
 
-let priorityColor = ['lightpink','lightgreen','lightblue','black'];
+let priorityColor = 'black'
 
 let colorsArray = ['lightpink','lightgreen','lightblue','black'];
 
@@ -52,6 +52,7 @@ textarea_cont.addEventListener('keydown',function(e){
        ticketCreated(priorityColor,textarea_cont.value,shortid());
        modal_cont.style.display='none'
        textarea_cont.value = ''
+       removeDefaultSelected();
     
     }
 })
@@ -116,16 +117,24 @@ function ticketRemover(ticket){
 
 // priority colors function color list
 
-
+function removeDefaultSelected() {
+    AllpriorityColors.forEach(function(select){
+        console.log(select)
+        if(select.classList.contains('active')) {
+            select.classList.remove('active');
+        }
+    })
+}
 
 AllpriorityColors.forEach(function(ele){
    
     ele.addEventListener('click',function(e){
         
         AllpriorityColors.forEach(function(select){
-            
-            select.classList.remove('active');
-            
+            console.log(select)
+            if(select.classList.contains('active')) {
+                select.classList.remove('active');
+            }
         })
 
         ele.classList.add('active');
