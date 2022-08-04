@@ -119,7 +119,7 @@ body{
     box-shadow: #353b48;
 }
 .active {
-    border: 2px solid white;
+    border: 7px solid rgb(250, 234, 234);
 }
 
 .main-cont {
@@ -132,19 +132,30 @@ body{
 .ticket-cont {
     height: 15rem;
     width: 18rem;
-    background-color:chartreuse;
+    /* background-color:chartreuse; */
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
 }
 .ticket-color {
     height: 1rem;
-    /* background-color:lightblue; */
+    /* /* background-color:/ */
 }
 .ticket-id {
     height: 2rem;
-    background-color: #353b48;
+    background-color: #fed90a;
 }
 .ticket-taskarea {
-    height: calc(100% - 2rem - 1rem);
+    height: calc(100% - 1rem - 2rem - 2rem);
     font-size: 2rem;
     background-color: white;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    outline: none;
+    overflow: hidden;
+    padding:12px;
+}
+.ticket-lock {
+    display: flex;
+    /* border: 1px solid black; */
+    justify-content: flex-end;
+    font-size: 1.5rem;
+    margin-right: 5px;
 }

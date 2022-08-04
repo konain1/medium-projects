@@ -10,10 +10,18 @@ let main_cont = document.querySelector('.main-cont');
 
 let AllpriorityColors = document.querySelectorAll('.priority-color');
 
-
 let priorityColor = ['lightpink','lightgreen','lightblue','black'];
 
+let colorsArray = ['lightpink','lightgreen','lightblue','black'];
+
 let removeBtn = document.querySelector('.remove-btn');
+
+let ticketLock = document.querySelector('.ticket-lock');
+
+let Locked = 'fa-lock'
+
+let Unlocked = 'fa-lock-open'
+
 
 let removeFlag = false
 
@@ -36,34 +44,42 @@ addBtn.addEventListener('click',function(e){
 
 })
 
-// text area where tasks have written
+// text area where tasks  have  been written
 
 textarea_cont.addEventListener('keydown',function(e){
    
     if(e.key === 'Enter'){
-       ticketCreated(priorityColor,textarea_cont.value);
+       ticketCreated(priorityColor,textarea_cont.value,shortid());
        modal_cont.style.display='none'
        textarea_cont.value = ''
+    
     }
 })
 
 // ticket funciton
 
-function ticketCreated(priorityColor,task){
+function ticketCreated(priorityColor,task,ticketId){
 
     let ticket_cont = document.createElement('div');
 
     ticket_cont.setAttribute('class','ticket-cont');
 
-    ticket_cont.innerHTML = `<div class="ticket-color ${priorityColor} "></div>
-    <div class="ticket-id"></div>
-    <div class="ticket-taskarea">${task}</div>`;
+    ticket_cont.innerHTML = ` <div class="ticket-cont">
+    <div class="ticket-color ${priorityColor}"></div>
+    <div class="ticket-id">#${ticketId}</div>
+    <div class="ticket-taskarea">${task}</div>
+    <div class="ticket-lock">
+        <i class="fa-solid fa-lock"></i>
+    </div>
+    
+  </div>`;
 
     main_cont.appendChild(ticket_cont);
 
-
+    
     ticketRemover(ticket_cont);
-  
+    handleLock(ticket_cont);
+    bandColorHandler(ticket_cont);
 
    
 }
@@ -83,6 +99,8 @@ removeBtn.addEventListener('click',()=>{
 
 })
 
+
+// ticket remover function
 function ticketRemover(ticket){
     
         ticket.addEventListener('click',function(){
@@ -98,15 +116,74 @@ function ticketRemover(ticket){
 
 // priority colors function color list
 
+
+
 AllpriorityColors.forEach(function(ele){
+   
     ele.addEventListener('click',function(e){
+        
         AllpriorityColors.forEach(function(select){
+            
             select.classList.remove('active');
+            
         })
 
         ele.classList.add('active');
-         priorityColor = ele.classList[0];
+        priorityColor = ele.classList[0];
          console.log(priorityColor)
     })
 })
 
+
+// lock unlock function
+function handleLock(ticket){
+    let lockElement = ticket.querySelector('.ticket-lock');
+   let lockActiveClass = lockElement.children[0];
+   let taskTicketArea = ticket.querySelector('.ticket-taskarea');
+
+   lockActiveClass.addEventListener('click',function(){
+
+        if(lockActiveClass.classList.contains(Locked)){
+            lockActiveClass.classList.remove(Locked);
+            lockActiveClass.classList.add(Unlocked);
+            taskTicketArea.setAttribute('contenteditable','true');
+            
+        }else {
+            lockActiveClass.classList.remove(Unlocked);
+            lockActiveClass.classList.add(Locked);
+            taskTicketArea.setAttribute('contenteditable','false');
+
+        }
+
+   })
+   
+}
+
+// Stripcolor handler
+
+function bandColorHandler(ticket){
+    let StripColor = ticket.querySelector('.ticket-color ');
+
+    StripColor.addEventListener('click',function(){ 
+
+
+        let currentColor  = StripColor.classList[1];
+
+    let currentColorIdx = colorsArray.findIndex(function(color){
+        return currentColor === color;
+        
+    })
+     currentColorIdx++;
+    let nextStripColorIdx = currentColorIdx % colorsArray.length;
+    let nextStripColor = colorsArray[nextStripColorIdx]
+
+
+    StripColor.classList.remove(currentColor);
+
+    StripColor.classList.add(nextStripColor);
+    console.log(currentColor , nextStripColor);
+
+    })
+
+    
+}
