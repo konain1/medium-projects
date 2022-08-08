@@ -18,6 +18,8 @@ let removeBtn = document.querySelector('.remove-btn');
 
 let ticketLock = document.querySelector('.ticket-lock');
 
+let ToolBoxColors = document.querySelectorAll('.color');
+
 let Locked = 'fa-lock'
 
 let Unlocked = 'fa-lock-open'
@@ -25,6 +27,7 @@ let Unlocked = 'fa-lock-open'
 
 let removeFlag = false
 
+let ticketArray = [];
 
 
 
@@ -49,7 +52,7 @@ addBtn.addEventListener('click',function(e){
 textarea_cont.addEventListener('keydown',function(e){
    
     if(e.key === 'Enter'){
-       ticketCreated(priorityColor,textarea_cont.value,shortid());
+       ticketCreated(priorityColor,textarea_cont.value);
        modal_cont.style.display='none'
        textarea_cont.value = ''
        removeDefaultSelected();
@@ -60,14 +63,14 @@ textarea_cont.addEventListener('keydown',function(e){
 // ticket funciton
 
 function ticketCreated(priorityColor,task,ticketId){
-
+    let id = ticketId || shortid();
     let ticket_cont = document.createElement('div');
 
     ticket_cont.setAttribute('class','ticket-cont');
 
     ticket_cont.innerHTML = ` <div class="ticket-cont">
     <div class="ticket-color ${priorityColor}"></div>
-    <div class="ticket-id">#${ticketId}</div>
+    <div class="ticket-id">#${id}</div>
     <div class="ticket-taskarea">${task}</div>
     <div class="ticket-lock">
         <i class="fa-solid fa-lock"></i>
@@ -81,6 +84,13 @@ function ticketCreated(priorityColor,task,ticketId){
     ticketRemover(ticket_cont);
     handleLock(ticket_cont);
     bandColorHandler(ticket_cont);
+
+
+    if(!ticketId){
+        ticketArray.push({priorityColor,task,ticketId:id  });
+    }
+    
+    
 
    
 }
@@ -108,7 +118,7 @@ function ticketRemover(ticket){
 
             if(removeFlag == true){
                 ticket.remove();
-                console.log("clicked")
+                // console.log("clicked")
             }
            
         })
@@ -119,7 +129,7 @@ function ticketRemover(ticket){
 
 function removeDefaultSelected() {
     AllpriorityColors.forEach(function(select){
-        console.log(select)
+        // console.log(select)
         if(select.classList.contains('active')) {
             select.classList.remove('active');
         }
@@ -131,7 +141,7 @@ AllpriorityColors.forEach(function(ele){
     ele.addEventListener('click',function(e){
         
         AllpriorityColors.forEach(function(select){
-            console.log(select)
+            // console.log(select)
             if(select.classList.contains('active')) {
                 select.classList.remove('active');
             }
@@ -139,7 +149,7 @@ AllpriorityColors.forEach(function(ele){
 
         ele.classList.add('active');
         priorityColor = ele.classList[0];
-         console.log(priorityColor)
+        //  console.log(priorityColor)
     })
 })
 
@@ -190,9 +200,56 @@ function bandColorHandler(ticket){
     StripColor.classList.remove(currentColor);
 
     StripColor.classList.add(nextStripColor);
-    console.log(currentColor , nextStripColor);
+    // console.log(currentColor , nextStripColor);
 
     })
 
     
+}
+
+// color Toolbox 
+
+for(let i = 0;i<ToolBoxColors.length;i++){
+    ToolBoxColors[i].addEventListener('click',function(){
+        let currentToolBoxColor = ToolBoxColors[i].classList[1];
+        // console.log(currentToolBoxColor)
+
+
+        let filteredTicket = ticketArray.filter(function(ticketObj){
+            return currentToolBoxColor === ticketObj.priorityColor
+        })
+
+
+        // remove all tickets first 
+
+        let allTickets = document.querySelectorAll('.ticket-cont');
+
+        for(let i = 0;i<allTickets.length;i++){
+            allTickets[i].remove();
+            console.log(allTickets[i])
+        }
+
+        // display filtered tickets
+        filteredTicket.forEach(function(e){
+            ticketCreated(e.priorityColor,e.task,e.ticketId)
+            console.log(filteredTicket+"created")
+
+        })
+
+    })
+
+    
+     // all tickets display 
+    ToolBoxColors[i].addEventListener('dblclick',function(e){
+        let allTickets = document.querySelectorAll('.ticket-cont');
+
+        for(let i = 0;i<allTickets.length;i++){
+            allTickets[i].remove();
+            
+        }
+        ticketArray.forEach(function(obj){
+            ticketCreated(obj.priorityColor,obj.task,obj.ticketId);
+        })
+
+    })
 }
