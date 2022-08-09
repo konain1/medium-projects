@@ -91,8 +91,8 @@ function ticketCreated(priorityColor,task,ticketId){
 
     
     ticketRemover(ticket_cont);
-    handleLock(ticket_cont);
-    bandColorHandler(ticket_cont);
+    handleLock(ticket_cont,id);
+    bandColorHandler(ticket_cont,ticketId);
 
 
     if(!ticketId){
@@ -123,14 +123,25 @@ removeBtn.addEventListener('click',()=>{
 
 
 // ticket remover function
-function ticketRemover(ticket){
+function ticketRemover(ticket,id){
     
         ticket.addEventListener('click',function(){
 
-            if(removeFlag == true){
-                ticket.remove();
-                // console.log("clicked")
-            }
+            if(!removeFlag)  return
+
+
+               let idx = getticketidx(id);
+            //ticket remove from local storage
+
+            ticketArray.splice(idx,1); // remove array one index from array
+
+            let strticketArray = JSON.stringify(ticketArray); 
+
+            localStorage.setItem('tickets',strticketArray); // updating local storage after removing ticket
+
+            ticket.remove();
+               
+            
            
         })
     
@@ -147,6 +158,8 @@ function removeDefaultSelected() {
     })
 }
 
+
+// priority color list selector
 AllpriorityColors.forEach(function(ele){
    
     ele.addEventListener('click',function(e){
@@ -166,12 +179,14 @@ AllpriorityColors.forEach(function(ele){
 
 
 // lock unlock function
-function handleLock(ticket){
+function handleLock(ticket,id){
     let lockElement = ticket.querySelector('.ticket-lock');
    let lockActiveClass = lockElement.children[0];
    let taskTicketArea = ticket.querySelector('.ticket-taskarea');
 
    lockActiveClass.addEventListener('click',function(){
+
+    let taskidx = getticketidx(id);
 
         if(lockActiveClass.classList.contains(Locked)){
             lockActiveClass.classList.remove(Locked);
@@ -185,19 +200,28 @@ function handleLock(ticket){
 
         }
 
+        ticketArray[taskidx].task = taskTicketArea.innerText;
+        localStorage.setItem('tickets',JSON.stringify(ticketArray))
+
+
    })
    
 }
 
 // Stripcolor handler
 
-function bandColorHandler(ticket){
+function bandColorHandler(ticket,id){
     let StripColor = ticket.querySelector('.ticket-color ');
 
     StripColor.addEventListener('click',function(){ 
 
 
         let currentColor  = StripColor.classList[1];
+
+
+        let coloridx = getticketidx(id)
+        console.log(coloridx)
+ 
 
     let currentColorIdx = colorsArray.findIndex(function(color){
         return currentColor === color;
@@ -211,11 +235,14 @@ function bandColorHandler(ticket){
     StripColor.classList.remove(currentColor);
 
     StripColor.classList.add(nextStripColor);
-    // console.log(currentColor , nextStripColor);
+  
+
+    ticketArray[coloridx].priorityColor = nextStripColor
+
+    localStorage.setItem('tickets',JSON.stringify(ticketArray))
 
     })
 
-    
 }
 
 // color Toolbox 
@@ -263,4 +290,12 @@ for(let i = 0;i<ToolBoxColors.length;i++){
         })
 
     })
+}
+
+function getticketidx(id){
+    let ticketidx = ticketArray.findIndex(function(idxobj){
+        return idxobj.ticketId === id
+    })
+
+    return ticketidx
 }
