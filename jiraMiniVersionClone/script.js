@@ -29,10 +29,19 @@ let removeFlag = false
 
 let ticketArray = [];
 
-
-
-
 let addflag = false
+
+
+// getback tickets from local storage
+
+if(localStorage.getItem('tickets')){
+    ticketArray = JSON.parse(localStorage.getItem('tickets'))
+
+    ticketArray.forEach(function(e){
+        ticketCreated(e.priorityColor,e.task,e.ticketId)
+    })
+}
+
 
 // visible modal or invisible
 addBtn.addEventListener('click',function(e){
@@ -90,6 +99,8 @@ function ticketCreated(priorityColor,task,ticketId){
         ticketArray.push({priorityColor,task,ticketId:id  });
     }
     
+    // local storage
+    localStorage.setItem('tickets',JSON.stringify(ticketArray))
     
 
    
@@ -238,7 +249,7 @@ for(let i = 0;i<ToolBoxColors.length;i++){
 
     })
 
-    
+
      // all tickets display 
     ToolBoxColors[i].addEventListener('dblclick',function(e){
         let allTickets = document.querySelectorAll('.ticket-cont');
