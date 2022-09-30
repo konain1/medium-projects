@@ -1,7 +1,9 @@
 import React from "react";
-import { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { useState ,useEffect} from "react";
+import { signInWithEmailAndPassword ,signOut,onAuthStateChanged} from "firebase/auth";
 import { auth } from "../Firebase";
+import { async } from "@firebase/util";
+
 
 
 
@@ -10,10 +12,11 @@ import { auth } from "../Firebase";
 
 function Login() {
   const [email, setemail] = useState();
-  const [password, setpassword] = useState();
+  const [password, setpassword] = useState(); 
   const [user, setUser] = useState(null);
   const [loader, setLoader] = useState(false);
   const [error,setError] = useState("");
+  const[mainLoader,setMainLoader] = useState(true);
 
 
 
@@ -27,7 +30,10 @@ function Login() {
     setpassword(e.target.value);
   };
 
-
+const singout = async()=>{
+  await signOut(auth)
+  setUser(null)
+}
   const printDetails = async () => {
    
         
@@ -51,15 +57,43 @@ function Login() {
    
     setLoader(false)
   };
+
+
+  useEffect((()=>{
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+       setUser(user)
+        // ...
+      } else {
+        // User is signed out
+        // ...
+        setUser(null)
+      }
+
+      setMainLoader(false)
+    });
+  }))
+
+
+
+
   return (
     <>
-    {error != ""? <h1>{error}</h1> : <>
+   
+    {
+      mainLoader == true ?<h1>page loading....</h1>:
+      error != ""? <h1>{error}</h1> : <>
     {loader === true ?<h1>wait few minutes</h1> : <>
     {user !=null ? (
+      <>
+      <button onClick={singout}>singout</button>
         <h1> {user.uid}</h1>
+        </>
       ) : (
         <>
-          {" "}
+         
           <input
             type="email"
             onChange={trackemail}
