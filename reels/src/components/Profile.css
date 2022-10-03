@@ -1,0 +1,55 @@
+body {
+    background-color: aqua;
+}
+.header { 
+    height: 2rem;
+    border-bottom: 2px solid grey;
+   
+}
+.main-cont {
+    height: 70vh;
+     border:1px solid black;
+     margin-top: 2rem;
+     display: flex;
+     justify-content: space-around;
+}
+.img-cont {
+    height: 100%;
+ 
+    box-sizing: border-box;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pro-img{
+   height: 20rem;
+   width: 20rem;
+   border-radius: 50%; 
+   background-color: red;
+}
+.details {
+    height: 100%;
+   
+    box-sizing: border-box;
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+.personalInfo{
+    height: 30%;
+   
+    box-sizing: border-box;
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+  
+}
+span {
+    font-size: 18px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 200;
+}

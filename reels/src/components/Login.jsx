@@ -83,7 +83,7 @@ const singout = async()=>{
     <>
    
     {
-      mainLoader == true ?<h1>page loading....</h1>:
+      
       error != ""? <h1>{error}</h1> : <>
     {loader === true ?<h1>wait few minutes</h1> : <>
     {user !=null ? (

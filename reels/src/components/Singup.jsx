@@ -1,6 +1,7 @@
 import { createUserWithEmailAndPassword} from 'firebase/auth';
+import { collection, addDoc } from "firebase/firestore"; 
 
-import { auth } from "../Firebase";
+import { auth ,db} from "../Firebase";
 
 import React from 'react'
 import {useState} from 'react'
@@ -14,6 +15,7 @@ function Singup() {
   const [loader, setLoader] = useState(false);
   const [error,setError] = useState("");
   const [user, setUser] = useState("");
+  
 
 
   let singupCreated = async()=>{
@@ -23,13 +25,25 @@ function Singup() {
       let signupUser = await createUserWithEmailAndPassword(
         auth,
         email,
-        password
+        fullname,
+        password,
+        
       );
-     setUser(signupUser.user)
-     signupUser.user.displayName = fullname;
-    
-     console.log(signupUser.user.displayName)
-
+      signupUser.user.displayName = fullname;
+      
+      console.log(signupUser.user.displayName)
+      
+      const docRef = await addDoc(collection(db, "users"), {
+        fullname,
+        email,
+        userIds:signupUser.user.uid,
+        reelsId:[],
+        profileImgUrl:""
+        
+      });
+      
+      
+      setUser(signupUser.user)
   }catch(err){
       setError(err.message)
 
@@ -43,18 +57,7 @@ function Singup() {
 
   }
 
-  // let singupMail = (e)=>{
-  //   setEmail(e.target.value)
-  // }
-
-  // let singupPassword = (e)=>{
-  //   setPassword(e.target.value)
-  // }
-
-  // let fullName = (e)=>{
-  //   setFullname(e.target.value)
-  // }
-
+ 
 
   return (
  
