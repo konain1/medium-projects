@@ -10,8 +10,7 @@ export function AutoContextProvider({children}){
 
     const[mainLoader,setMainLoader] = useState(true);
     const [cuser,setUser] = useState(null)
-    let value = {cuser}
-
+    
     useEffect((()=>{
         onAuthStateChanged(auth, (user) => {
           if (user) {
@@ -26,12 +25,13 @@ export function AutoContextProvider({children}){
           }
     
           setMainLoader(false)
-           
+          
         });
       }),[])
-
       
-
+      let value = cuser
+      
+      
       return (
         <AuthContext.Provider value={value}>
             {mainLoader == false &&children}

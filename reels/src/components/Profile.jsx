@@ -18,8 +18,8 @@ C/O https://placeholder.com/' className='Pro-img'/>
       </div>
       <div className='details'>
         <div className='personalInfo'>
-        <div className='name'><h2>  <span>Name:</span> {contextObj.cuser.uid}</h2></div>
-        <div className='email'><h3><span>Email:</span> {contextObj.cuser.email}</h3> </div>
+        <div className='name'><h2>  <span>Name:</span> {contextObj.uid}</h2></div>
+        <div className='email'><h3><span>Email:</span> {contextObj.email}</h3> </div>
         <div className='reelsPost'> <span>Post</span> :10</div>
         </div>
         
