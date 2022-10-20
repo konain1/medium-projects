@@ -1,6 +1,6 @@
 import { createUserWithEmailAndPassword} from 'firebase/auth';
 import { collection, addDoc } from "firebase/firestore"; 
-
+import { doc, setDoc } from "firebase/firestore"; 
 import { auth ,db} from "../Firebase";
 
 import React from 'react'
@@ -29,18 +29,26 @@ function Singup() {
         password,
         
       );
-      signupUser.user.displayName = fullname;
-      
-      console.log(signupUser.user.displayName)
-      
-      const docRef = await addDoc(collection(db, "users"), {
+
+      await setDoc(doc(db, "users",signupUser.user.uid), {
         fullname,
         email,
         userIds:signupUser.user.uid,
         reelsId:[],
         profileImgUrl:""
-        
       });
+      signupUser.user.displayName = fullname;
+      
+      
+      
+      // const docRef = await addDoc(collection(db, "users"), {
+      //   fullname,
+      //   email,
+      //   userIds:signupUser.user.uid,
+      //   reelsId:[],
+      //   profileImgUrl:""
+        
+      // });
       
       
       setUser(signupUser.user)

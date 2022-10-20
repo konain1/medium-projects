@@ -1,6 +1,6 @@
 
 import { initializeApp } from "firebase/app";
-
+import { getStorage,} from "firebase/storage";
 const firebaseConfig = {
     apiKey: "AIzaSyAnCuPwcGgCZ6Xo2bBJE0ojdD4AKex2DVc",
     authDomain: "reels-autj.firebaseapp.com",
@@ -11,6 +11,7 @@ const firebaseConfig = {
     measurementId: "G-BV7BSDG1JF"
     };
     // module.exports = firebaseConfig
+   export const app = initializeApp(firebaseConfig);
 
    export default firebaseConfig
-    
+   export const storage = getStorage(app);
