@@ -4,9 +4,7 @@ import "./Card.scss"
 function Card(props) {
   return (
     
-    <img className='card' src={props.arrimg.map((item)=>{
-        return item.img;
-    })} />
+    <img className='card' src={props.img}/>
   
   )
 }

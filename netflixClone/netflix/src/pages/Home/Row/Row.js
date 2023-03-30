@@ -3,12 +3,33 @@ import Card from '../../Card/Card'
 import "./Row.scss"
 
 
-function Row(props) {
+function Row({ arr=[{
+    img:"https://hippy.in/wp-content/uploads/2014/06/lagaan-bollywood-movie-poster.jpg"
+}]}) {
+
+    const imgobj = [
+        { img:"https://hippy.in/wp-content/uploads/2014/06/lagaan-bollywood-movie-poster.jpg"},
+        { img:"https://hippy.in/wp-content/uploads/2014/06/lagaan-bollywood-movie-poster.jpg"},
+        { img:"https://hippy.in/wp-content/uploads/2014/06/lagaan-bollywood-movie-poster.jpg"},
+        { img:"https://hippy.in/wp-content/uploads/2014/06/lagaan-bollywood-movie-poster.jpg"},
+        { img:"https://hippy.in/wp-content/uploads/2014/06/lagaan-bollywood-movie-poster.jpg"},
+        { img:"https://hippy.in/wp-content/uploads/2014/06/lagaan-bollywood-movie-poster.jpg"},
+        { img:"https://hippy.in/wp-content/uploads/2014/06/lagaan-bollywood-movie-poster.jpg"},
+        { img:"https://hippy.in/wp-content/uploads/2014/06/lagaan-bollywood-movie-poster.jpg"},
+        { img:"https://hippy.in/wp-content/uploads/2014/06/lagaan-bollywood-movie-poster.jpg"},
+        { img:"https://hippy.in/wp-content/uploads/2014/06/lagaan-bollywood-movie-poster.jpg"},
+        { img:"https://hippy.in/wp-content/uploads/2014/06/lagaan-bollywood-movie-poster.jpg"},
+        { img:"https://hippy.in/wp-content/uploads/2014/06/lagaan-bollywood-movie-poster.jpg"},
+    ]
   return (
     <div className='row'>
-        <h2>{props.title}</h2>
+        <h2>{}</h2>
         <div>
-        <Card arrimg={[img:"https://hippy.in/wp-content/uploads/2014/06/lagaan-bollywood-movie-poster.jpg"]} />
+
+        {imgobj.map((item)=>(
+            <Card img={item.img} />
+        ))}
+        
         
 
         </div>
