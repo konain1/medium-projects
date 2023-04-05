@@ -30,7 +30,7 @@ function Home() {
     const fetctPopular = async () => {
       const {
         data: { results },
-      } = await Axios.get(`${mainUrl}/movie/${popular}?api_key=${myApi}&page=2`);
+      } = await Axios.get(`${mainUrl}/movie/${popular}?api_key=${myApi}&page=8`);
 
       setPoplarMovies(results);
       // console.log(results)

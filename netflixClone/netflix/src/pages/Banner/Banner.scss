@@ -5,11 +5,76 @@
     position: relative;
     background-repeat: no-repeat;
     background-size: cover;
+   display: flex;
+   justify-content: space-evenly;
+   flex-direction: column;
+   padding: 3rem;
+   box-sizing: border-box;
+    
+    h2,p{
+        color: white;
+        font-size: 3rem;
+        z-index: 10;
+        width: 50%;
+    }
+    p{
+        width: 40%;
+        font-size: 1rem;
+        letter-spacing: 2px;
+        word-spacing: 3px;
+        font-weight: 200;
+    }
     &::after{
         content: "";
         position: absolute;
         width: 100%;
         height: 100%;
+        top: 0;
+        left: 0;
         opacity: 0.4;
+
     }
+
+    >div{
+        display: flex;
+
+        button{
+            width: 150px;
+            z-index: 10;
+            padding: 1rem;
+            margin: 1rem;
+            background-color: white;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 04s;
+
+          &:hover{
+            opacity: 0.6;
+          }
+            svg{
+                font-size: 1.7rem;
+                margin: 0 10px;
+            }
+
+            &:nth-child(odd){
+                color: black;
+                background-color: white;
+            }
+            &:nth-child(even){
+                color: rgb(255, 255, 255);
+                background-color: rgb(57, 56, 56);
+            }
+        }
+        
+       
+    }
+   
+
+
 }

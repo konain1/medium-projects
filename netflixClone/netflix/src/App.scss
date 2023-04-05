@@ -6,6 +6,9 @@ $navbg:rgb(16,16,16);
     padding:0;
     margin:0;   
     font-family: "Roboto" , sans-serif;
+    &::-webkit-scrollbar{
+        display: none;
+    }
 }
 
 .header {
