@@ -1,0 +1,14 @@
+.category-div{
+    // width:400px;
+    background-color: aqua;
+    display: flex;
+    justify-content: space-evenly;
+
+    >.items{
+        cursor: pointer;
+    }
+    >.items:hover {
+      scale: 1.2;
+      transition: all 0.5s;
+    }
+}

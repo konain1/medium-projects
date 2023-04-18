@@ -14,6 +14,7 @@ $navbg:rgb(16,16,16);
 .header {
     height: 100px;
     background-color:$navbg;
+    // background-color: rgb(117, 117, 102);
     padding: 1.2rem;
     box-sizing: border-box;
     display: flex;
@@ -36,12 +37,38 @@ $navbg:rgb(16,16,16);
             font-weight: 300;
         }
     }
-    >svg{
+    >.imsearch{
         color: white;
         font-size: 2rem;
         cursor: pointer;
+       
         &:hover{
             color: rgb(181, 179, 179);
         }
     }
+   > input {
+     
+    width: 160px;
+    height: 20px;
+    margin-right: 15px;
+    outline: none;
+    border-radius: 5px;
+    &:hover{
+     color: rgb(63, 58, 58);
+    }
+   
+ }
+  
+ .filterbtn{
+    color:white;
+    margin:0 20px;
+    font-size: 2rem;
+}
+   
+    
+  
+   
+   
+   
+   
 }

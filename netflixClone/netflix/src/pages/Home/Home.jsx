@@ -27,6 +27,7 @@ function Home() {
   const [genreList,setGenreList] = useState([])
 
   useEffect(() => {
+    
     const fetctPopular = async () => {
       const {
         data: { results },
