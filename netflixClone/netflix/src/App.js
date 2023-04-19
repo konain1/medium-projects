@@ -46,7 +46,7 @@ function App() {
 
 
   useEffect(() => {
-    
+
     const fetchPopular = async () => {
       const {
         data: { results },
@@ -100,7 +100,7 @@ function App() {
     fetchTopRated()
     fetchNowPlaying()
     fetchPopular();
-  });
+  },[]);
 
   return (
 // sending Contexts

@@ -65,7 +65,17 @@ $navbg:rgb(16,16,16);
     font-size: 2rem;
 }
    
-    
+.searchedList{
+    width:200px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color:white;
+    position: absolute;
+    right: 0px;
+    top:40px;
+    z-index: 10;
+}
   
    
    

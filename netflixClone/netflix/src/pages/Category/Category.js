@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
-import React, { useEffect,useState } from 'react'
-import Axios from "axios";
+import React, { useState } from 'react'
+
 import './Category.scss'
 import { GenreContext} from '../../App'
 import { MoviesContext, NowPlayingContext, TopRatedMoviesContext, UpcomoingMoviesContext} from "../../App";
