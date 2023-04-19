@@ -3,7 +3,7 @@ import {ImSearch} from "react-icons/im"
 import { AiOutlineFilter } from 'react-icons/ai'
 import { Link } from 'react-router-dom';
 import { useState } from "react";
-import Listing from "../../Category/Category";
+// import Listing from "../../Category/Category";
 import Category from "../../Category/Category";
 
 
@@ -12,14 +12,14 @@ function Header() {
 
 const [searchingList,setSearchingList] = useState()
 
-const [listShow,setListShow]= useState([]);
-const [filterTab,setfilterTab] = useState(false)
+// const [listShow,setListShow]= useState([]);
+const [Toggle,setToggle] = useState(false)
 
 const HandleList=()=>{
 
-  setListShow(searchingList)
-  setfilterTab(!filterTab)
-  console.log(listShow + "-->")
+  // setListShow(searchingList)
+  setToggle(!Toggle)
+ 
 }
  
   return (
@@ -55,7 +55,7 @@ const HandleList=()=>{
        
       </nav>
 
-      <Category list={filterTab} />
+      <Category toggle={Toggle} />
     </div>
   )
 }
