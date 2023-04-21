@@ -35,7 +35,8 @@ function Category(props) {
 
      { props.toggle ==  true ? GenreList.map((item)=>{
 
-       return <h3  onClick={()=>{categorySelectedHandler(item.id)}} className='items'>{item.name}</h3>
+       return <h3 key={item.id
+       }  onClick={()=>{categorySelectedHandler(item.id)}} className='items'>{item.name}</h3>
        
      }) :''}
 

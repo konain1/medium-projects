@@ -35,8 +35,14 @@ const searchingWordHandler = (event)=>{
   return item.original_title.toLowerCase().includes(searchedWord.toLowerCase())
 
  })
- setListShow(SearchedThis )
-console.log(listShow  )
+ 
+
+ if(searchedWord == ''){
+  setListShow("")
+ }else{
+  setListShow(SearchedThis )
+ }
+
 }
  
   return (
